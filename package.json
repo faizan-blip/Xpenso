@@ -9,8 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.14.1",
+    "@mui/material": "^5.14.1",
+    "framer-motion": "^10.14.0",
     "next": "13.4.11",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-awesome-reveal": "^4.2.5",
+    "react-dark-mode-toggle": "^0.2.0",
+    "react-dom": "18.2.0",
+    "react-icons": "^4.10.1"
   }
 }
