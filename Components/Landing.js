@@ -48,7 +48,7 @@ export default function Landing() {
    const route = useRouter();
   return (
     <Box sx={{height:"100%" , minHeight:"100vh" ,backgroundImage:isDarkMode === false ? `url(${bg.src})` : `url(${bgd.src})`, backgroundSize:"cover" , backgroundPosition:"center" , backgroundRepeat:"no-repeat" , position:"relative"}}>
-      <Box sx={{ position:"fixed" , top:{md:"5%" , xs:"20%"} , right:{md:"2%" , xs:"75%"} , zIndex:"3" ,backdropFilter:"blur(10px)"}}>
+      <Box sx={{ position:"fixed" , top:{md:"5%" , xs:"20%"} , left:{md:"2%" , xs:"75%"} , zIndex:"3" ,backdropFilter:"blur(10px)"}}>
         <DarkModeToggle
       onChange={setIsDarkMode}
       checked={isDarkMode}
@@ -71,17 +71,9 @@ export default function Landing() {
           
             </Box> 
             <Button className={isDarkMode === false ? "hover" : "hoverdrk"} variant='contained' sx={{background: isDarkMode === false ? "#dde1e7 !important" : "linear-gradient(166deg, transparent 0% 50%, #2D3135 50%, #3E4248 100%), linear-gradient(166deg, #3E4248 0%, #2A2E32 50%, #3E4248 50%, #313437 100%) !important" , boxShadow: isDarkMode === false ? "2px 2px 5px #babecc,-5px -5px 10px #ffffff73" : "8px 8px 22px rgba(21, 22, 24, 0.38), -4px -2px 16px rgba(195, 200, 205, 0.08)", height:"auto" , fontSize:"18px" , borderRadius:"10px" , textTransform:"none"  , gap:"0.2em",   color: isDarkMode === false ? '#000' : "#d7e1ec",}}>Login<AiOutlineLogin olor='#000' size={20}/></Button>
-            <Fab onClick={toggleDrawer(true)} sx={{display:{md:"none" , xs:"block" , position:"fixed" , top:"5%" , right:"5%" , zIndex:"1!important", background: isDarkMode === false ? "#dde1e7 !important" : "linear-gradient(166deg, transparent 0% 50%, #2D3135 50%, #3E4248 100%), linear-gradient(166deg, #3E4248 0%, #2A2E32 50%, #3E4248 50%, #313437 100%) !important" , boxShadow: isDarkMode === false ? "2px 2px 5px #babecc,-5px -5px 10px #ffffff73" : "8px 8px 22px rgba(21, 22, 24, 0.38), -4px -2px 16px rgba(195, 200, 205, 0.08)",boxShadow: isDarkMode === false ? "2px 2px 5px #babecc,-5px -5px 10px #ffffff73" : "8px 8px 22px rgba(21, 22, 24, 0.38), -4px -2px 16px rgba(195, 200, 205, 0.08)"}}}><RiMenu3Line color='#000' size={25} style={{marginTop:"0.7em"}} /></Fab>
-            <SwipeableDrawer
-        anchor="right"
-        open={open}
-        onClose={toggleDrawer}
-        onOpen={toggleDrawer}
-      >
-        <Box sx={{ width: "250px", padding: "1em" , display:"flex",alignItems:"start" , flexDirection:"column" ,height:"100vh",background: isDarkMode === false ? "#dde1e7" : "radial-gradient(37.53% 147.33% at 5.39% 8.57%, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(180deg, #26282a 0%, #212325 100%)" }}>
-        <Fab onClick={()=> setOpen(false)} sx={{background: isDarkMode === false ? "#dde1e7 !important" : "linear-gradient(166deg, transparent 0% 50%, #2D3135 50%, #3E4248 100%), linear-gradient(166deg, #3E4248 0%, #2A2E32 50%, #3E4248 50%, #313437 100%) !important" , boxShadow: isDarkMode === false ? "2px 2px 5px #babecc,-5px -5px 10px #ffffff73" : "8px 8px 22px rgba(21, 22, 24, 0.38), -4px -2px 16px rgba(195, 200, 205, 0.08)",boxShadow: isDarkMode === false ? "2px 2px 5px #babecc,-5px -5px 10px #ffffff73" : "8px 8px 22px rgba(21, 22, 24, 0.38), -4px -2px 16px rgba(195, 200, 205, 0.08)"}}><TfiClose size={22}/></Fab>
-        </Box>
-      </SwipeableDrawer>
+            <Fab onClick={()=>{
+              route.push('/#home')
+            }} sx={{display:{md:"none" , xs:"block" , position:"fixed" , bottom:"-2%" , left:"50%" , zIndex:"1!important", background: isDarkMode === false ? "#dde1e7 !important" : "linear-gradient(166deg, transparent 0% 50%, #2D3135 50%, #3E4248 100%), linear-gradient(166deg, #3E4248 0%, #2A2E32 50%, #3E4248 50%, #313437 100%) !important" , boxShadow: isDarkMode === false ? "2px 2px 5px #babecc,-5px -5px 10px #ffffff73" : "8px 8px 22px rgba(21, 22, 24, 0.38), -4px -2px 16px rgba(195, 200, 205, 0.08)",boxShadow: isDarkMode === false ? "2px 2px 5px #babecc,-5px -5px 10px #ffffff73" : "8px 8px 22px rgba(21, 22, 24, 0.38), -4px -2px 16px rgba(195, 200, 205, 0.08)" , transform:"translate(-50% , -50%)"}}}><AiFillHome color='#000' size={25} style={{marginTop:"0.7em"}} /></Fab>
     </Box>
     <div id='home'></div>
     <Box sx={{display:"flex" ,padding:{sm:"4em 4em" , xs:"4em 1em"} , height:"100%" , justifyContent:"center" , gap:"3em" , flexDirection:{lg:"row" , xs:"column"}  , alignItems:{lg:"start" , xs:"center"} }}>
