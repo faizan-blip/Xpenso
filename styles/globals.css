@@ -15,7 +15,7 @@
 
 .hover:hover{
   box-shadow: inset 2px 2px 5px #babecc,inset -5px -5px 10px #ffffff73 !important;
-  border-radius: 12px;
+  /* border-radius: 12px; */
   transform: scaleZ(2);
 }
 .hoverdrk:hover{
@@ -39,11 +39,15 @@
 @media(max-width:500px){
   .pad{
     width: 300px!important;
-    height: 300px!important;
+    height: auto !important;
   }
   .pen{
     width: 120px!important;
     height: 120px!important;
+  }
+  .error{
+    width: 450px!important;
+    height: 450px!important;
   }
 }
 @media(max-width:900px){
@@ -170,4 +174,3 @@
     padding: 0 0.5em;
   }
 
- 

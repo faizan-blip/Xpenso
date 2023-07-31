@@ -71,7 +71,7 @@ export default function Landing() {
           
             </Box> 
             <Button className={isDarkMode === false ? "hover" : "hoverdrk"} variant='contained' sx={{background: isDarkMode === false ? "#dde1e7 !important" : "linear-gradient(166deg, transparent 0% 50%, #2D3135 50%, #3E4248 100%), linear-gradient(166deg, #3E4248 0%, #2A2E32 50%, #3E4248 50%, #313437 100%) !important" , boxShadow: isDarkMode === false ? "2px 2px 5px #babecc,-5px -5px 10px #ffffff73" : "8px 8px 22px rgba(21, 22, 24, 0.38), -4px -2px 16px rgba(195, 200, 205, 0.08)", height:"auto" , fontSize:"18px" , borderRadius:"10px" , textTransform:"none"  , gap:"0.2em",   color: isDarkMode === false ? '#000' : "#d7e1ec",}}>Login<AiOutlineLogin olor='#000' size={20}/></Button>
-            <Fab onClick={()=>{
+            <Fab className='fab' onClick={()=>{
               route.push('/#home')
             }} sx={{display:{md:"none" , xs:"block" , position:"fixed" , bottom:"-2%" , left:"50%" , zIndex:"1!important", background: isDarkMode === false ? "#dde1e7 !important" : "linear-gradient(166deg, transparent 0% 50%, #2D3135 50%, #3E4248 100%), linear-gradient(166deg, #3E4248 0%, #2A2E32 50%, #3E4248 50%, #313437 100%) !important" , boxShadow: isDarkMode === false ? "2px 2px 5px #babecc,-5px -5px 10px #ffffff73" : "8px 8px 22px rgba(21, 22, 24, 0.38), -4px -2px 16px rgba(195, 200, 205, 0.08)",boxShadow: isDarkMode === false ? "2px 2px 5px #babecc,-5px -5px 10px #ffffff73" : "8px 8px 22px rgba(21, 22, 24, 0.38), -4px -2px 16px rgba(195, 200, 205, 0.08)" , transform:"translate(-50% , -50%)"}}}><AiFillHome color='#000' size={25} style={{marginTop:"0.7em"}} /></Fab>
     </Box>
