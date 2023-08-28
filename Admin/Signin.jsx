@@ -8,19 +8,19 @@ import { useRouter } from "next/router";
 import { signIn, signOut, providers, useSession } from "next-auth/react"
 import {AiFillEye,AiFillEyeInvisible} from 'react-icons/ai'
 const Signin = () => {
-    const { data: session } = useSession()
+    // const { data: session } = useSession()
   const [passicon ,  setPassicon] = useState(true)
     // sessionStorage.setItem("user", JSON.stringify(session))
     const {isDarkMode} = useContext(AppContext)
     const route= useRouter()
-    if (session) {
-        // Set the user data in sessionStorage only when the user is signed in
-        sessionStorage.setItem("user", JSON.stringify(session))
+    // if (session) {
+    //     // Set the user data in sessionStorage only when the user is signed in
+    //     sessionStorage.setItem("user", JSON.stringify(session))
     
-        return (
-        route.push('/Coming')
-        )
-      }
+    //     return (
+    //     route.push('/Coming')
+    //     )
+    //   }
 
 
       const change = ()=>{
@@ -69,7 +69,7 @@ const Signin = () => {
           <Divider sx={{borderColor:"#d2d2d2" , width:{lg:"50%" , xs:"100%"}}}>
         <Chip label="OR" />
       </Divider>
-      <Button onClick={() => signIn('google')} variant='contained' sx={{width:{lg:"50%" , xs:"100%"} , fontWeight:"700", textTransform:"none" , fontSize:"19px" ,background: isDarkMode === false ? "#000 !important" : "linear-gradient(166deg, transparent 0% 50%, #2D3135 50%, #3E4248 100%), linear-gradient(166deg, #3E4248 0%, #2A2E32 50%, #3E4248 50%, #313437 100%) !important" , boxShadow: isDarkMode === false ? "2px 2px 5px #babecc,-5px -5px 10px #ffffff73" : "8px 8px 22px rgba(21, 22, 24, 0.38), -4px -2px 16px rgba(195, 200, 205, 0.08)" , cursor:"pointer", color: isDarkMode === false ? '#fff' : "#d7e1ec" , borderRadius:"12px" , height:"2.5em" , marginTop:"1em" , gap:"1em"}}>  <Box component='img' src="/google.png" sx={{width:"7%" }}></Box>Sign in with Google</Button>
+      <Button variant='contained' sx={{width:{lg:"50%" , xs:"100%"} , fontWeight:"700", textTransform:"none" , fontSize:"19px" ,background: isDarkMode === false ? "#000 !important" : "linear-gradient(166deg, transparent 0% 50%, #2D3135 50%, #3E4248 100%), linear-gradient(166deg, #3E4248 0%, #2A2E32 50%, #3E4248 50%, #313437 100%) !important" , boxShadow: isDarkMode === false ? "2px 2px 5px #babecc,-5px -5px 10px #ffffff73" : "8px 8px 22px rgba(21, 22, 24, 0.38), -4px -2px 16px rgba(195, 200, 205, 0.08)" , cursor:"pointer", color: isDarkMode === false ? '#fff' : "#d7e1ec" , borderRadius:"12px" , height:"2.5em" , marginTop:"1em" , gap:"1em"}}>  <Box component='img' src="/google.png" sx={{width:"7%" }}></Box>Sign in with Google</Button>
           <Button onClick={()=>{
                        route.push('/Coming')
                }} variant='contained' sx={{width:{lg:"50%" , xs:"100%"} , fontWeight:"700" , fontSize:"19px",textTransform:"none" ,background: isDarkMode === false ? "#407bff !important" : "linear-gradient(166deg, transparent 0% 50%, #2D3135 50%, #3E4248 100%), linear-gradient(166deg, #3E4248 0%, #2A2E32 50%, #3E4248 50%, #313437 100%) !important" , boxShadow: isDarkMode === false ? "2px 2px 5px #babecc,-5px -5px 10px #ffffff73" : "8px 8px 22px rgba(21, 22, 24, 0.38), -4px -2px 16px rgba(195, 200, 205, 0.08)" , cursor:"pointer", color: isDarkMode === false ? '#fff' : "#d7e1ec" , borderRadius:"12px" , height:"2.5em" , marginTop:"0.4em"}}>Signin</Button>
