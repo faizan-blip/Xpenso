@@ -5,22 +5,22 @@ import { AiOutlineLeft, AiOutlineLock, AiOutlineMail, AiOutlineMobile, AiOutline
 import logo from '../Components/Images/black.png'
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { signIn, signOut, providers, useSession } from "next-auth/react"
+// import { signIn, signOut, providers, useSession } from "next-auth/react"
 import {AiFillEye,AiFillEyeInvisible} from 'react-icons/ai'
 const Signin = () => {
-    const { data: session } = useSession()
+    // const { data: session } = useSession()
   const [passicon ,  setPassicon] = useState(true)
     // sessionStorage.setItem("user", JSON.stringify(session))
     const {isDarkMode} = useContext(AppContext)
     const route= useRouter()
-    if (session) {
-        // Set the user data in sessionStorage only when the user is signed in
-        sessionStorage.setItem("user", JSON.stringify(session))
+    // if (session) {
+    //     // Set the user data in sessionStorage only when the user is signed in
+    //     sessionStorage.setItem("user", JSON.stringify(session))
     
-        return (
-        route.push('/Coming')
-        )
-      }
+    //     return (
+    //     route.push('/Coming')
+    //     )
+    //   }
 
 
       const change = ()=>{
