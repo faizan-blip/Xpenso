@@ -14,7 +14,6 @@ const Sign = () => {
       setPassicon((prevpass)=> !prevpass)
    }
     const route= useRouter()
-    
     return ( 
         <>
         <Box sx={{ display:"flex" , justifyContent:"space-between" , padding:{sm:"0 2em" ,xs:"0 1em"} ,background:"#dde1e7", alignItems:"center"}}>
