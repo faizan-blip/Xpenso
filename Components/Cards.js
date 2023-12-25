@@ -130,7 +130,6 @@ const overalldata = async ()=>{
    useEffect (()=>{
     overalldata()
     setGetbudget(Cookies.get("overallbudget"))
-    console.log("overall" , overall);
     setGetexpense(Cookies.get("totalexpense"));
     setId(Cookies.get('budgetid'))
    },[])
