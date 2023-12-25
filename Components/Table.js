@@ -24,7 +24,7 @@ const Tablee = () => {
 
   const getExpense = async () => {
     try {
-      const response = await axios.get('http://localhost:4000/api/getExpense', {
+      const response = await axios.get('https://xpenso-backend.onrender.com/api/getExpense', {
         headers: {
           Authorization: `Bearer ${tokencr}`,
         },
@@ -63,7 +63,7 @@ const Tablee = () => {
   const handleSave = async () => {
     try {
       const response = await axios.put(
-        `http://localhost:4000/api/editExpense/${selectedId}`,
+        `https://xpenso-backend.onrender.com/api/editExpense/${selectedId}`,
         {
           value: editedValue,
           label: editedLabel,
