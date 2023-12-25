@@ -1,7 +1,7 @@
 import Cards from "@/Components/Cards";
 import Sidebar from "@/Components/Sidebar";
 import Chart from "@/Components/Chart";
-import { Avatar, Stack, Typography, Button, IconButton } from "@mui/material"; // Added Button import
+import { Avatar, Stack, Typography, Button, IconButton, Fab } from "@mui/material"; // Added Button import
 import Table from "@/Components/Table";
 import { useRouter } from "next/router";
 import { useContext, useEffect } from "react";
@@ -32,8 +32,14 @@ const Dashboard = () => {
           <Stack width='100%' flexDirection='row' justifyContent='space-between' margin={{sm:"0" , xs:"0 1em"}}>
           <Stack flexDirection='column' alignItems='start' >
           <Typography fontSize='25px' fontWeight='700' color='#252525'>Dashboard</Typography>
-              <Typography>Logged-in as {email}</Typography>
+              <Typography fontSize={{sm:"15px" , xs:"12px"}}>Logged-in as {email}</Typography>
             </Stack>
+            <Stack display={{md:"none" , xs:"block"}}>
+            <Fab onClick={()=>{
+                  Cookies.remove("token")
+                  router.push('/signin')
+                }}sx={{background:"none !important" , display:"flex" , justifyContent:"center"  , alignItems:"center" }}><AiOutlineLogout color='#000' size={20}/></Fab>
+                </Stack>
           </Stack>
           <Typography sx={{alignSelf:"end" , margin:"0.5em 0" , fontSize:"14px" , fontWeight:"400", display:"flex" , alignItems:"center"}}><IconButton onClick={()=> router.reload()}><RefreshIcon/></IconButton>Refresh to see the update..</Typography>
           <Stack flexDirection='row' justifyContent='center' alignItems='center' height='100%' margin='1.8em 0' width='100%'>
