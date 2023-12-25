@@ -11,7 +11,7 @@ const forgot = () => {
     const [email , setEmail] = useState('')
     const forgotpass = async()=>{
         try{
-        const res = await axios.post(`http://localhost:4000/api/forgotpassword/${token}` ,{
+        const res = await axios.post(`https://xpenso-backend.onrender.com/api/forgotpassword/${token}` ,{
           email:email 
         } , {
             headers:{

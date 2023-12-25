@@ -25,7 +25,7 @@ const Sign = () => {
     const signup = async(e)=>{
       e.preventDefault()
       try{
-        const response = await axios.post('http://localhost:4000/api/signup' , {
+        const response = await axios.post('https://xpenso-backend.onrender.com/api/signup' , {
           name:data.name,
           email:data.email,
           phone:data.phone,

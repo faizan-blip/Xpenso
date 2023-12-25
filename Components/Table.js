@@ -89,7 +89,7 @@ const Tablee = () => {
 
   const handleDeleteConfirmed = async () => {
     try {
-      await axios.delete(`http://localhost:4000/api/deleteExpense/${selectedId}`, {
+      await axios.delete(`https://xpenso-backend.onrender.com/api/deleteExpense/${selectedId}`, {
         headers: {
           Authorization: `Bearer ${tokencr}`,
         },

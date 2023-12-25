@@ -43,7 +43,7 @@ const [editedBudget, setEditedBudget] = useState('');
     const [id , setId] = useState('')
     const createBudget = async () => {
         try {
-          const response = await axios.post('http://localhost:4000/api/createBudget', { value: budget } , {
+          const response = await axios.post('https://xpenso-backend.onrender.com/api/createBudget', { value: budget } , {
             headers: {
               Authorization: `Bearer ${token || tokencr}`,
             },});
@@ -62,7 +62,7 @@ const [editedBudget, setEditedBudget] = useState('');
       const createExpense = async () => {
         try {
           const response = await axios.post(
-            'http://localhost:4000/api/createExpense' , {value: expense , label: label} , {
+            'https://xpenso-backend.onrender.com/api/createExpense' , {value: expense , label: label} , {
               headers:{
                 Authorization: `Bearer ${token || tokencr}`,
               }
@@ -80,7 +80,7 @@ const [editedBudget, setEditedBudget] = useState('');
 const overalldata = async ()=>{
   try{
     const totalexpense = await axios.post(
-      'http://localhost:4000/api/calculateTotalExpense',
+      'https://xpenso-backend.onrender.com/api/calculateTotalExpense',
       {},
       {
         headers: {
@@ -117,7 +117,7 @@ const overalldata = async ()=>{
      
      const handleSaveEdit = async () => {
       try {
-         const response = await axios.put(`http://localhost:4000/api/updateBudget/${id}`, { value: editedBudget  }, {
+         const response = await axios.put(`https://xpenso-backend.onrender.com/api/updateBudget/${id}`, { value: editedBudget  }, {
             headers: {
                Authorization: `Bearer ${token || tokencr}`,
             },

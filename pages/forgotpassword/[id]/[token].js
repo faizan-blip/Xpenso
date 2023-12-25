@@ -18,7 +18,7 @@ const change = () => {
       
       console.log(id, token);
         try{
-        const res = await axios.post(`http://localhost:4000/api/resetpassword/${id}/${token}` ,{
+        const res = await axios.post(`https://xpenso-backend.onrender.com/api/resetpassword/${id}/${token}` ,{
           password:password,
           confirmPassword:newpassword 
         } , {

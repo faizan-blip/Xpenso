@@ -26,13 +26,13 @@ const Chart = () => {
 
   const fetchData = async () => {
     try {
-      const budgetResponse = await axios.get('http://localhost:4000/api/getBudget', {
+      const budgetResponse = await axios.get('https://xpenso-backend.onrender.com/api/getBudget', {
         headers: {
           Authorization: `Bearer ${token || tokencr}`,
         },
       });
 
-      const expenseResponse = await axios.get('http://localhost:4000/api/getExpense', {
+      const expenseResponse = await axios.get('https://xpenso-backend.onrender.com/api/getExpense', {
         headers: {
           Authorization: `Bearer ${token || tokencr}`,
         },
