@@ -102,18 +102,12 @@ const overalldata = async ()=>{
 }
      
 
-      useEffect (()=>{
-       overalldata()
-       setGetbudget(Cookies.get("overallbudget"))
-       console.log(setGetbudget(Cookies.get("overallbudget")));
-       setGetexpense(Cookies.get("totalexpense"));
-       setId(Cookies.get('budgetid'))
-      },[getexpense])
+    
+
       const handleEditBudget = () => {
         setOpenEditDialog(true);
         setEditedBudget(getbudget);
      };
-  
      
      const handleSaveEdit = async () => {
       try {
@@ -132,7 +126,15 @@ const overalldata = async ()=>{
          // Handle error as needed
       }
    };
-   
+
+   useEffect (()=>{
+    overalldata()
+    setGetbudget(Cookies.get("overallbudget"))
+    console.log("overall" , overall);
+    setGetexpense(Cookies.get("totalexpense"));
+    setId(Cookies.get('budgetid'))
+   },[])
+
 
 
 
@@ -143,7 +145,7 @@ const overalldata = async ()=>{
       <Stack flexGrow={{lg:"0" ,xs:"1"}} flexDirection='row' justifyContent='center' alignItems='center' gap={{xl:"1em" , sm:"0em" , xs:"1em"}} boxShadow='inset 2px 2px 5px #b8b9be,inset -3px -3px 7px #fff!important'  borderRadius='7px'height='100%' width={{lg:"30%" , xs:"100%"}} sx={{backgroundImage:`url(${bg.src})`, backgroundSize:"cover" ,backgroundRepeat:"no-repeat" , position:"relative" , padding:{lg:"0 0" , xs:"2em 0"} }}>
      
       {
-       (getbudget === 0 && createBudget === null)  ? (
+        getbudget ==  0 ? (
         <>
           <Stack flexDirection='column' justifyContent='center' alignItems='center' gap='0.5em'>
             <Stack flexDirection='row' justifyContent='center' alignItems='center' width='3em' height='3em' boxShadow='inset 2px 2px 5px #b8b9be,inset -3px -3px 7px #fff!important' borderRadius='50%'><IconButton onClick={()=> setOpenDialog(true)}><AddCircleIcon sx={{transform:"scale(1.5)", color:"#000"}}/></IconButton></Stack>
