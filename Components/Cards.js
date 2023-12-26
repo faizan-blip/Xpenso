@@ -132,7 +132,7 @@ const overalldata = async ()=>{
     setGetbudget(Cookies.get("overallbudget"));
     setGetexpense(Cookies.get("totalexpense"));
     setId(Cookies.get('budgetid'));
-  }, [overalldata]);
+  }, []);
   
 
 
