@@ -53,6 +53,9 @@ const [editedBudget, setEditedBudget] = useState('');
        Cookies.set("budgetvalue" ,response.data.data.value)
        Cookies.set('budgetid' , response.data.data._id)
           setOpenDialog(false);
+          overalldata()
+          setGetbudget(Cookies.get("overallbudget"))
+          setGetexpense(Cookies.get("totalexpense"));
         } catch (error) {
           console.error(error.message);
           // Handle error as needed
