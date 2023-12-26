@@ -51,7 +51,7 @@ const Signin = () => {
   } 
 
   const googlesignin = () =>{
-    window.location.href = 'https://xpenso-backend.onrender.com/api/auth/google';
+    window.location.href = 'https://xpenso-backend.onrender.com/api/auth/google/callback';
   }
 
 
