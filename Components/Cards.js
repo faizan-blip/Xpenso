@@ -111,7 +111,7 @@ const overalldata = async ()=>{
      
      const handleSaveEdit = async () => {
       try {
-         const response = await axios.put(`https://xpenso-backend.onrender.com/api/updateBudget/${id}`, { value: editedBudget  }, {
+         const response = await axios.put(`https://xpenso-backend.onrender.com/api/updateBudget/${tokencr}`, { value: editedBudget  }, {
             headers: {
                Authorization: `Bearer ${token || tokencr}`,
             },
