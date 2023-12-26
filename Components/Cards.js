@@ -113,12 +113,18 @@ const overalldata = async ()=>{
      const handleSaveEdit = async () => {
       // setId(Cookies.get('budgetid'))
       try {
-        const res = await axios.get('https://xpenso-backend.onrender.com/api/getBudget' , {} , {
+        const res = await axios.get('https://xpenso-backend.onrender.com/api/getBudget' , {
           headers: {
-            Authorization: `Bearer ${token || tokencr}`,
+            Authorization: `Bearer ${tokencr}`,
          },
         });
-          setId(res.data.data._id)
+          const budgetId = res.data.data[0]._id; // Access the first element in the array
+          console.log(budgetId);
+ 
+          Cookies.set("budid", budgetId);
+          var id = Cookies.get('budid');
+          console.log(id);
+
          const response = await axios.put(`https://xpenso-backend.onrender.com/api/updateBudget/${id}`, { value: editedBudget  }, {
             headers: {
                Authorization: `Bearer ${token || tokencr}`,
