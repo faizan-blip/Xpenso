@@ -111,8 +111,14 @@ const overalldata = async ()=>{
      };
      
      const handleSaveEdit = async () => {
-      setId(Cookies.get('budgetid'))
+      // setId(Cookies.get('budgetid'))
       try {
+        const res = await axios.get('https://xpenso-backend.onrender.com/api/getBudget' , {} , {
+          headers: {
+            Authorization: `Bearer ${token || tokencr}`,
+         },
+        });
+          setId(res.data.data._id)
          const response = await axios.put(`https://xpenso-backend.onrender.com/api/updateBudget/${id}`, { value: editedBudget  }, {
             headers: {
                Authorization: `Bearer ${token || tokencr}`,
