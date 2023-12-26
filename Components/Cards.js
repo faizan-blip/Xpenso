@@ -53,6 +53,7 @@ const [editedBudget, setEditedBudget] = useState('');
        Cookies.set("budgetvalue" ,response.data.data.value)
        Cookies.set('budgetid' , response.data.data._id)
           setOpenDialog(false);
+          setId(Cookies.get('budgetid'));
         } catch (error) {
           console.error(error.message);
           // Handle error as needed
@@ -110,8 +111,9 @@ const overalldata = async ()=>{
      };
      
      const handleSaveEdit = async () => {
+      setId(Cookies.get('budgetid'))
       try {
-         const response = await axios.put(`https://xpenso-backend.onrender.com/api/updateBudget/${tokencr}`, { value: editedBudget  }, {
+         const response = await axios.put(`https://xpenso-backend.onrender.com/api/updateBudget/${id}`, { value: editedBudget  }, {
             headers: {
                Authorization: `Bearer ${token || tokencr}`,
             },
@@ -131,7 +133,6 @@ const overalldata = async ()=>{
     overalldata();
     setGetbudget(Cookies.get("overallbudget"));
     setGetexpense(Cookies.get("totalexpense"));
-    setId(Cookies.get('budgetid'));
   }, []);
   
 
