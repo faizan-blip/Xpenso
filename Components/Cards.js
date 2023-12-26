@@ -53,8 +53,6 @@ const [editedBudget, setEditedBudget] = useState('');
        Cookies.set("budgetvalue" ,response.data.data.value)
        Cookies.set('budgetid' , response.data.data._id)
           setOpenDialog(false);
-          setGetbudget(Cookies.get("overallbudget"));
-          setGetexpense(Cookies.get("totalexpense"));
         } catch (error) {
           console.error(error.message);
           // Handle error as needed
@@ -74,8 +72,6 @@ const [editedBudget, setEditedBudget] = useState('');
           setId(response.data.data.value)
           setCreateexpense(response.data.data.value)
         setOpenDialog1(false);
-        setGetbudget(Cookies.get("overallbudget"));
-        setGetexpense(Cookies.get("totalexpense"));
         } catch (error) {
           console.error(error.message);
           // Handle error as needed
@@ -136,7 +132,7 @@ const overalldata = async ()=>{
     setGetbudget(Cookies.get("overallbudget"));
     setGetexpense(Cookies.get("totalexpense"));
     setId(Cookies.get('budgetid'));
-  }, [getbudget, getexpense]);
+  }, [overalldata]);
   
 
 
