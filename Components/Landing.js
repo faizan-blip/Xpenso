@@ -10,13 +10,13 @@ import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import {TbBrandSentry} from 'react-icons/tb'
 import bg from '../Components/Images/bg.svg'
 import bgd from '../Components/Images/bgdark.svg'
-import ipad from '../Components/Images/Top iPad 9.7 Inch.png'
+import ipad from '../Components/Images/XP.png'
 import pen from '../Components/Images/h8-rev-img-2.png'
 import go from '../Components/Images/go.png'
 import { Fade, Slide } from "react-awesome-reveal"
 import DarkModeToggle from "react-dark-mode-toggle"
 import { motion } from 'framer-motion'
-import paddark from '../Components/Images/iPad Pro Mockup.png'
+import paddark from '../Components/Images/XP2.png'
 import { AppContext } from '../Context/AppContext'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
