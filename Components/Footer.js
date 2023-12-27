@@ -8,8 +8,15 @@ import {AiFillHome} from 'react-icons/ai'
 import {FaQq} from 'react-icons/fa'
 import {MdOutlineConnectWithoutContact} from 'react-icons/md'
 import logo from '../Components/Images/black.png'
+import axios from 'axios'
+import toast, { Toaster } from 'react-hot-toast'
+import Cookies from 'js-cookie'
 export default function Footer() {
-
+   const [data , setData]= useState({
+    name:"",
+    email:"",
+    message:""
+   })
     const {isDarkMode} = useContext(AppContext)
     const[show , setShow] = useState('')
     const social = [
@@ -34,9 +41,31 @@ const navLinks = {
 const setbg = (name)=>{
   setShow(name)
      }
+
+     const sendmessage = async()=>{
+      const tokencr = Cookies.get("token")
+      try{
+        const res = await axios.post('https://xpenso-backend.onrender.com/api/sendmessage'  , {
+          name:data.name,
+          email:data.email,
+          message:data.message
+         } , {
+            headers:{
+              Authorization:`Bearer ${tokencr}`
+            }
+         })
+         console.log(res.data.message);
+        toast.success(res.data.message)
+      } catch(err){
+        console.log(err.response.data.message);
+        toast.error(err.response.data.message)
+      }
+       
+     }
   
   return (
     <>
+    <Toaster/>
     <div id='contact'></div>
     <Stack flexDirection={{lg:"row" , xs:"column"}} justifyContent='space-between' alignItems='start' sx={{ background: isDarkMode === false ? "#dde1e7" : "radial-gradient(37.53% 147.33% at 5.39% 8.57%, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0) 100%), linear-gradient(180deg, #26282a 0%, #212325 100%)" , height:"100%" , boxShadow:isDarkMode === false ? "2px 2px 5px #babecc,-5px -5px 10px #ffffff73" : "15px 25px 15px rgba(21, 22, 24, 0.24), -4px -4px 15px rgba(195, 200, 205, 0.04)" , padding:{lg:"2em 8em" , xs:"2em 2em"} , gap:"1em" , flexWrap:"nowrap" }}>
         <Box sx={{display:"flex" , flexDirection:"column"  , width:{lg:"28%" , xs:"100%"} , gap:"0.8em"}}> 
@@ -77,23 +106,23 @@ const setbg = (name)=>{
             <Typography sx={{  color: isDarkMode === false ? '#000' : "#fff"}}>Your Name</Typography>
             <Box sx={{display:"flex"}}>
               <Button sx={{boxShadow: isDarkMode === false ? "2px 2px 5px #babecc,-5px -5px 10px #ffffff73" : "15px 25px 15px rgba(21, 22, 24, 0.24), -4px -4px 15px rgba(195, 200, 205, 0.04)" , background: isDarkMode === false ? "#dde1e7" : " linear-gradient(135deg, #3A3E41 0%, #2A2D30 49%, #242628 100%), linear-gradient(139deg, #434B54 1%, #2A2C2F 45%, #191B1E 75%)" , borderRadius:"15px 0 0 15px"}}><AiOutlineUser size={20}  color={isDarkMode === false ? '#000' : "#d7e1ec"} /></Button>
-              <input placeholder='e.g.Faizan Akram' type='text' style={{  color: isDarkMode === false ? '#000' : "#d7e1ec",boxShadow:isDarkMode === false ? "inset 2px 2px 5px #babecc,inset -5px -5px 10px #ffffff73" : "8px 8px 22px rgba(21, 22, 24, 0.38), -4px -2px 16px rgba(195, 200, 205, 0.08), inset -2px -2px 4px rgba(54, 54, 57, 0.16), inset 2px 2px 4px rgba(30, 30, 32, 0.18)", border:"none" , height:"2.5em" , width:"100%"}}/>
+              <input onChange={(e) => setData((prevData) => ({ ...prevData, name: e.target.value }))}  placeholder='e.g.Faizan Akram' type='text' style={{  color: isDarkMode === false ? '#000' : "#d7e1ec",boxShadow:isDarkMode === false ? "inset 2px 2px 5px #babecc,inset -5px -5px 10px #ffffff73" : "8px 8px 22px rgba(21, 22, 24, 0.38), -4px -2px 16px rgba(195, 200, 205, 0.08), inset -2px -2px 4px rgba(54, 54, 57, 0.16), inset 2px 2px 4px rgba(30, 30, 32, 0.18)", border:"none" , height:"2.5em" , width:"100%"}}/>
             </Box>
           </Box>
           <Box sx={{display:"flex" , flexDirection:"column" , marginTop:"1em" , gap:"0.5em"}}>
             <Typography sx={{  color: isDarkMode === false ? '#000' : "#fff"}}>Your Email</Typography>
             <Box sx={{display:"flex"}}>
               <Button sx={{boxShadow: isDarkMode === false ? "2px 2px 5px #babecc,-5px -5px 10px #ffffff73" : "15px 25px 15px rgba(21, 22, 24, 0.24), -4px -4px 15px rgba(195, 200, 205, 0.04)" , background: isDarkMode === false ? "#dde1e7" : " linear-gradient(135deg, #3A3E41 0%, #2A2D30 49%, #242628 100%), linear-gradient(139deg, #434B54 1%, #2A2C2F 45%, #191B1E 75%)", borderRadius:"15px 0 0 15px"}}><AiOutlineMail size={20}  color={isDarkMode === false ? '#000' : "#d7e1ec"} /></Button>
-              <input placeholder='e.g.faizanrock753@gmail.com' type='text' style={{  color: isDarkMode === false ? '#000' : "#d7e1ec",boxShadow:isDarkMode === false ? "inset 2px 2px 5px #babecc,inset -5px -5px 10px #ffffff73" : "8px 8px 22px rgba(21, 22, 24, 0.38), -4px -2px 16px rgba(195, 200, 205, 0.08), inset -2px -2px 4px rgba(54, 54, 57, 0.16), inset 2px 2px 4px rgba(30, 30, 32, 0.18)", border:"none" , height:"2.5em" , width:"100%"}}/>
+              <input onChange={(e) => setData((prevData) => ({ ...prevData, email: e.target.value }))}  placeholder='e.g.faizanrock753@gmail.com' type='text' style={{  color: isDarkMode === false ? '#000' : "#d7e1ec",boxShadow:isDarkMode === false ? "inset 2px 2px 5px #babecc,inset -5px -5px 10px #ffffff73" : "8px 8px 22px rgba(21, 22, 24, 0.38), -4px -2px 16px rgba(195, 200, 205, 0.08), inset -2px -2px 4px rgba(54, 54, 57, 0.16), inset 2px 2px 4px rgba(30, 30, 32, 0.18)", border:"none" , height:"2.5em" , width:"100%"}}/>
             </Box>
           </Box>
           <Box sx={{display:"flex" , flexDirection:"column" , marginTop:"1em" , gap:"0.5em"}}>
             <Typography sx={{  color: isDarkMode === false ? '#000' : "#fff"}}>Your Message</Typography>
             <Box sx={{display:"flex"}}>
-              <textarea rows={5} placeholder='Type your message.....'  style={{  color: isDarkMode === false ? '#000' : "#d7e1ec",boxShadow:isDarkMode === false ? "inset 2px 2px 5px #babecc,inset -5px -5px 10px #ffffff73" : "8px 8px 22px rgba(21, 22, 24, 0.38), -4px -2px 16px rgba(195, 200, 205, 0.08), inset -2px -2px 4px rgba(54, 54, 57, 0.16), inset 2px 2px 4px rgba(30, 30, 32, 0.18)", border:"none" , height:"10em" , width:"100%" , resize:"none" , background:"none"}}/>
+              <textarea onChange={(e) => setData((prevData) => ({ ...prevData, message: e.target.value }))}  rows={5} placeholder='Type your message.....'  style={{  color: isDarkMode === false ? '#000' : "#d7e1ec",boxShadow:isDarkMode === false ? "inset 2px 2px 5px #babecc,inset -5px -5px 10px #ffffff73" : "8px 8px 22px rgba(21, 22, 24, 0.38), -4px -2px 16px rgba(195, 200, 205, 0.08), inset -2px -2px 4px rgba(54, 54, 57, 0.16), inset 2px 2px 4px rgba(30, 30, 32, 0.18)", border:"none" , height:"10em" , width:"100%" , resize:"none" , background:"none"}}/>
             </Box>
           </Box>
-          <Button className={isDarkMode === false ? "hover" : "hoverdrk"} variant='contained' sx={{background: isDarkMode === false ? "#dde1e7 !important" : "linear-gradient(166deg, transparent 0% 50%, #2D3135 50%, #3E4248 100%), linear-gradient(166deg, #3E4248 0%, #2A2E32 50%, #3E4248 50%, #313437 100%) !important" , boxShadow: isDarkMode === false ? "2px 2px 5px #babecc,-5px -5px 10px #ffffff73" : "8px 8px 22px rgba(21, 22, 24, 0.38), -4px -2px 16px rgba(195, 200, 205, 0.08)", height:"auto" , fontSize:"18px" , borderRadius:"10px" , textTransform:"none"  , gap:"0.2em" ,    color: isDarkMode === false ? '#000' : "#d7e1ec" , marginTop:"1em" }}>Submit</Button>
+          <Button onClick={sendmessage} className={isDarkMode === false ? "hover" : "hoverdrk"} variant='contained' sx={{background: isDarkMode === false ? "#dde1e7 !important" : "linear-gradient(166deg, transparent 0% 50%, #2D3135 50%, #3E4248 100%), linear-gradient(166deg, #3E4248 0%, #2A2E32 50%, #3E4248 50%, #313437 100%) !important" , boxShadow: isDarkMode === false ? "2px 2px 5px #babecc,-5px -5px 10px #ffffff73" : "8px 8px 22px rgba(21, 22, 24, 0.38), -4px -2px 16px rgba(195, 200, 205, 0.08)", height:"auto" , fontSize:"18px" , borderRadius:"10px" , textTransform:"none"  , gap:"0.2em" ,    color: isDarkMode === false ? '#000' : "#d7e1ec" , marginTop:"1em" }}>Submit</Button>
         </Box>
     </Stack>
     </>
