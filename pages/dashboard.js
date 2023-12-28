@@ -13,13 +13,13 @@ import RefreshIcon from '@mui/icons-material/Refresh';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 const Dashboard = () => {
   const router = useRouter();
-  let user; // Declare tokencr outside useEffect
+  let tokencr; // Declare tokencr outside useEffect
   const {isDarkMode , setIsDarkMode} = useContext(AppContext)
   const email = Cookies.get('email')
   useEffect(() => {
     const token = sessionStorage.getItem('token');
-    user = Cookies.get("user"); // Assign value to tokencr
-    if (!user) {
+    tokencr = Cookies.get("token"); // Assign value to tokencr
+    if (!token || !tokencr) {
       router.push('/signin');
     }
   }, [router]);
@@ -36,7 +36,7 @@ const Dashboard = () => {
             </Stack>
             <Stack display={{md:"none" , xs:"block"}}>
             <Fab onClick={()=>{
-                  Cookies.remove("user")
+                  Cookies.remove("token")
                   router.push('/signin')
                 }}sx={{background:"none !important" , display:"flex" , justifyContent:"center"  , alignItems:"center" }}><AiOutlineLogout color='#000' size={20}/></Fab>
                 </Stack>
