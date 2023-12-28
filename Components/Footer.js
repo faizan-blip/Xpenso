@@ -44,6 +44,9 @@ const setbg = (name)=>{
 
      const sendmessage = async()=>{
       const tokencr = Cookies.get("token")
+      if(tokencr == undefined){
+        toast.error("Please Login to Contact us..")
+      } else {
       try{
         const res = await axios.post('https://xpenso-backend.onrender.com/api/sendmessage'  , {
           name:data.name,
@@ -60,7 +63,7 @@ const setbg = (name)=>{
         console.log(err.response.data.message);
         toast.error(err.response.data.message)
       }
-       
+    }
      }
   
   return (
