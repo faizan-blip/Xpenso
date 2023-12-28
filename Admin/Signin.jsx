@@ -37,8 +37,10 @@ const Signin = () => {
       console.log(response.data);
       toast.success(response.data.message)
       const token = response.data.data.id;
+      const user = response.data.token;
       const email = response.data.data.email;
       sessionStorage.setItem('token', token);
+      Cookies.set('user' , user)
       Cookies.set('token' , token)
       Cookies.set('email' , email)
       setTimeout(() => {

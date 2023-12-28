@@ -43,7 +43,7 @@ const setbg = (name)=>{
      }
 
      const sendmessage = async()=>{
-      const tokencr = Cookies.get("token")
+      const tokencr = Cookies.get("user")
       try{
         const res = await axios.post('https://xpenso-backend.onrender.com/api/sendmessage'  , {
           name:data.name,
