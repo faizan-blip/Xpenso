@@ -72,7 +72,7 @@ const Chart = () => {
       return {
         monthYear: key,
         totalExpense: monthlyData[key].totalExpense,
-        totalBudget: budgetEntry ? budgetEntry.value : 0,
+        totalBudget: budgetEntry ? budgetEntry.value : budgetEntry.value ,
       };
     });
 
