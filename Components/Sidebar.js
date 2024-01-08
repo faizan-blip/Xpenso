@@ -25,7 +25,7 @@ const Sidebar = () => {
                 <Button onClick={()=>{
                   Cookies.remove("token")
                   router.push('/signin')
-                  signOut()
+                  // signOut()
                 }} className="hover" variant='contained' sx={{ marginTop:"1.5em",width:"100%",background:"none !important" , boxShadow: "2px 2px 5px #babecc,-5px -5px 10px #ffffff73", height:"auto" , fontSize:"18px" , borderRadius:"10px" , textTransform:"none"  , gap:"0.2em",   color:'#000'}}>Log-out<AiOutlineLogout color='#000' size={20}/></Button>
               )
             }

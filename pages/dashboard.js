@@ -43,7 +43,7 @@ const Dashboard = () => {
             <Fab onClick={()=>{
                   Cookies.remove("token")
                   router.push('/signin')
-                  signOut()
+                  // signOut()
                 }}sx={{background:"none !important" , display:"flex" , justifyContent:"center"  , alignItems:"center" }}><AiOutlineLogout color='#000' size={20}/></Fab>
                 </Stack>
           </Stack>
