@@ -12,7 +12,7 @@ import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
 import Cookies from "js-cookie";
 const Signin = () => {
-  const { data, status } = useSession();
+  const {data: session} = useSession()
   const [passicon, setPassicon] = useState(true);
   const { isDarkMode } = useContext(AppContext);
   const [userdata , setUserdata] = useState({
@@ -21,12 +21,6 @@ const Signin = () => {
   })
   const route = useRouter();
 
-  if (status === 'authenticated'  ) {
-    Cookies.set("data" , JSON.stringify(data))
-    route.push('/404')
-    console.log(JSON.stringify(data));
-  }
-     
   const signin = async(e)=>{
     e.preventDefault()
     try{
@@ -50,11 +44,6 @@ const Signin = () => {
       toast.error(err.response.data.message)
     }
   } 
-
-  const googlesignin = () =>{
-    window.location.href = 'https://x-penso.vercel.app/api/auth/google/callback';
-  }
-
 
   const change = () => {
     setPassicon((prevpass) => !prevpass);
@@ -106,7 +95,10 @@ const Signin = () => {
           <Divider sx={{borderColor:"#d2d2d2" , width:{lg:"50%" , xs:"100%"}}}>
         <Chip label="OR" />
       </Divider>
-      <Button onClick={googlesignin} variant='contained' sx={{width:{lg:"50%" , xs:"100%"} , fontWeight:"700", textTransform:"none" , fontSize:"19px" ,background: isDarkMode === false ? "#000 !important" : "linear-gradient(166deg, transparent 0% 50%, #2D3135 50%, #3E4248 100%), linear-gradient(166deg, #3E4248 0%, #2A2E32 50%, #3E4248 50%, #313437 100%) !important" , boxShadow: isDarkMode === false ? "2px 2px 5px #babecc,-5px -5px 10px #ffffff73" : "8px 8px 22px rgba(21, 22, 24, 0.38), -4px -2px 16px rgba(195, 200, 205, 0.08)" , cursor:"pointer", color: isDarkMode === false ? '#fff' : "#d7e1ec" , borderRadius:"12px" , height:"2.5em" , marginTop:"1em" , gap:"1em"}}>  <Box component='img' src="/google.png" sx={{width:"7%" }}></Box>Sign in with Google</Button>
+      <Button  onClick={() => {
+      signIn('google')
+      }
+      } variant='contained' sx={{width:{lg:"50%" , xs:"100%"} , fontWeight:"700", textTransform:"none" , fontSize:"19px" ,background: isDarkMode === false ? "#000 !important" : "linear-gradient(166deg, transparent 0% 50%, #2D3135 50%, #3E4248 100%), linear-gradient(166deg, #3E4248 0%, #2A2E32 50%, #3E4248 50%, #313437 100%) !important" , boxShadow: isDarkMode === false ? "2px 2px 5px #babecc,-5px -5px 10px #ffffff73" : "8px 8px 22px rgba(21, 22, 24, 0.38), -4px -2px 16px rgba(195, 200, 205, 0.08)" , cursor:"pointer", color: isDarkMode === false ? '#fff' : "#d7e1ec" , borderRadius:"12px" , height:"2.5em" , marginTop:"1em" , gap:"1em"}}>  <Box component='img' src="/google.png" sx={{width:"7%" }}></Box>Sign in with Google</Button>
           <Button onClick={signin} variant='contained' sx={{width:{lg:"50%" , xs:"100%"} , fontWeight:"700" , fontSize:"19px",textTransform:"none" ,background: isDarkMode === false ? "#407bff !important" : "linear-gradient(166deg, transparent 0% 50%, #2D3135 50%, #3E4248 100%), linear-gradient(166deg, #3E4248 0%, #2A2E32 50%, #3E4248 50%, #313437 100%) !important" , boxShadow: isDarkMode === false ? "2px 2px 5px #babecc,-5px -5px 10px #ffffff73" : "8px 8px 22px rgba(21, 22, 24, 0.38), -4px -2px 16px rgba(195, 200, 205, 0.08)" , cursor:"pointer", color: isDarkMode === false ? '#fff' : "#d7e1ec" , borderRadius:"12px" , height:"2.5em" , marginTop:"0.4em"}}>Signin</Button>
         <Typography onClick={()=> route.push('/forgot')} sx={{color:"#252525" , fontWeight:"700" , cursor:"pointer", marginTop:"0.3em"}} >Forgot Password ?</Typography> 
         <Typography>Don’t have an account yet? <span style={{color:"#407bff" , fontWeight:"700" , cursor:"pointer"}} onClick={()=> route.push('/signup')}>Create Account</span></Typography>

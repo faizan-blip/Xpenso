@@ -11,18 +11,23 @@ import { AiOutlineLogout } from "react-icons/ai";
 import { AppContext } from "@/Context/AppContext";
 import RefreshIcon from '@mui/icons-material/Refresh';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import { signOut, useSession } from "next-auth/react";
 const Dashboard = () => {
   const router = useRouter();
-  let tokencr; // Declare tokencr outside useEffect
   const {isDarkMode , setIsDarkMode} = useContext(AppContext)
   const email = Cookies.get('email')
+  const { accessemail} = router.query;
   useEffect(() => {
-    const token = sessionStorage.getItem('token');
-    tokencr = Cookies.get("token"); // Assign value to tokencr
-    if (!token || !tokencr) {
+    const { accesstoken , accessemail} = router.query;
+    console.log(accesstoken);
+    let tokencr = Cookies.get("token"); // Declare tokencr using let
+    console.log(tokencr);
+  
+    if (accesstoken == '' && tokencr == '') {
       router.push('/signin');
     }
   }, [router]);
+  
 
   return (
     <>
@@ -32,12 +37,13 @@ const Dashboard = () => {
           <Stack width='100%' flexDirection='row' justifyContent='space-between' margin={{sm:"0" , xs:"0 1em"}}>
           <Stack flexDirection='column' alignItems='start' >
           <Typography fontSize='25px' fontWeight='700' color='#252525'>Dashboard</Typography>
-              <Typography fontSize={{sm:"15px" , xs:"12px"}}>Logged-in as {email}</Typography>
+              <Typography fontSize={{sm:"15px" , xs:"12px"}}>Logged-in as {accessemail || email}</Typography>
             </Stack>
             <Stack display={{md:"none" , xs:"block"}}>
             <Fab onClick={()=>{
                   Cookies.remove("token")
                   router.push('/signin')
+                  signOut()
                 }}sx={{background:"none !important" , display:"flex" , justifyContent:"center"  , alignItems:"center" }}><AiOutlineLogout color='#000' size={20}/></Fab>
                 </Stack>
           </Stack>

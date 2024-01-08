@@ -27,6 +27,7 @@ const Cards = () => {
       };
     
         const {token} = session()
+        const { accesstoken } = router.query;
         const tokencr = Cookies.get("token")
         const [openEditDialog, setOpenEditDialog] = useState(false);
 const [editedBudget, setEditedBudget] = useState('');
@@ -42,10 +43,11 @@ const [editedBudget, setEditedBudget] = useState('');
     const [openDialog1 , setOpenDialog1] = useState(false)
     const [id , setId] = useState('')
     const createBudget = async () => {
+     
         try {
           const response = await axios.post('https://xpenso-backend.onrender.com/api/createBudget', { value: budget } , {
             headers: {
-              Authorization: `Bearer ${token || tokencr}`,
+              Authorization: `Bearer ${accesstoken || tokencr}`,
             },});
           console.log(response.data.data.value);
        sessionStorage.setItem("budget value" ,response.data.data.value)
@@ -65,7 +67,7 @@ const [editedBudget, setEditedBudget] = useState('');
           const response = await axios.post(
             'https://xpenso-backend.onrender.com/api/createExpense' , {value: expense , label: label} , {
               headers:{
-                Authorization: `Bearer ${token || tokencr}`,
+                Authorization: `Bearer ${accesstoken || tokencr}`,
               }
              },);
           console.log(response.data.data.value);
@@ -85,7 +87,7 @@ const overalldata = async ()=>{
       {},
       {
         headers: {
-          Authorization: `Bearer ${token || tokencr}`,
+          Authorization: `Bearer ${accesstoken || tokencr}`,
         },
       }
     );
@@ -115,7 +117,7 @@ const overalldata = async ()=>{
       try {
         const res = await axios.get('https://xpenso-backend.onrender.com/api/getBudget' , {
           headers: {
-            Authorization: `Bearer ${tokencr}`,
+            Authorization: `Bearer ${accesstoken || tokencr}`,
          },
         });
           const budgetId = res.data.data[0]._id; // Access the first element in the array
@@ -127,7 +129,7 @@ const overalldata = async ()=>{
 
          const response = await axios.put(`https://xpenso-backend.onrender.com/api/updateBudget/${id}`, { value: editedBudget  }, {
             headers: {
-               Authorization: `Bearer ${token || tokencr}`,
+               Authorization: `Bearer ${accesstoken || tokencr}`,
             },
          });
    

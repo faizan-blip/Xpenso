@@ -16,7 +16,7 @@ const Chart = () => {
       return { token: null };
     }
   };
-
+   const {accesstoken} = router.query
     const {token} = session()
     const tokencr = Cookies.get("token")
   const [chartData, setChartData] = useState([]);
@@ -28,13 +28,13 @@ const Chart = () => {
     try {
       const budgetResponse = await axios.get('https://xpenso-backend.onrender.com/api/getBudget', {
         headers: {
-          Authorization: `Bearer ${token || tokencr}`,
+          Authorization: `Bearer ${accesstoken || tokencr}`,
         },
       });
 
       const expenseResponse = await axios.get('https://xpenso-backend.onrender.com/api/getExpense', {
         headers: {
-          Authorization: `Bearer ${token || tokencr}`,
+          Authorization: `Bearer ${accesstoken || tokencr}`,
         },
       });
 

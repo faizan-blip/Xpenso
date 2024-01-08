@@ -2,6 +2,7 @@ import { DeleteOutline, EditOutlined } from "@mui/icons-material";
 import { Stack, TableContainer, TableRow, TableCell, TableBody, TableHead, Table, TablePagination, IconButton, Dialog, DialogTitle, DialogContent, DialogActions, TextField, Button, Typography } from "@mui/material";
 import axios from "axios";
 import Cookies from "js-cookie";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
@@ -14,9 +15,9 @@ const Tablee = () => {
   const [deleteConfirmationDialog, setDeleteConfirmationDialog] = useState(false);
   const [editedLabel, setEditedLabel] = useState('');
   const [editedValue, setEditedValue] = useState('');
-
+const router = useRouter()
   const tokencr = Cookies.get("token");
-
+const {accesstoken} = router.query;
   const formatDate = (dateString) => {
     const options = { year: 'numeric', month: 'short', day: 'numeric' };
     return new Date(dateString).toLocaleDateString(undefined, options);
@@ -26,7 +27,7 @@ const Tablee = () => {
     try {
       const response = await axios.get('https://xpenso-backend.onrender.com/api/getExpense', {
         headers: {
-          Authorization: `Bearer ${tokencr}`,
+          Authorization: `Bearer ${tokencr || accesstoken}`,
         },
       });
 
@@ -70,7 +71,7 @@ const Tablee = () => {
         },
         {
           headers: {
-            Authorization: `Bearer ${tokencr}`,
+            Authorization: `Bearer ${tokencr || accesstoken}`,
           },
         }
       );
@@ -91,7 +92,7 @@ const Tablee = () => {
     try {
       await axios.delete(`https://xpenso-backend.onrender.com/api/deleteExpense/${selectedId}`, {
         headers: {
-          Authorization: `Bearer ${tokencr}`,
+          Authorization: `Bearer ${tokencr || accesstoken}`,
         },
       });
 

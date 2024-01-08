@@ -5,9 +5,11 @@ import bg1 from '../Components/Images/Waves-2s-1536px.png'
 import { useRouter } from "next/router";
 import Cookies from "js-cookie";
 import { AiOutlineLogout } from "react-icons/ai";
+import { signOut } from "next-auth/react";
 const Sidebar = () => {
     const router = useRouter()
    const tokencr = Cookies.get('token')
+   const {accesstoken} = router.query;
     return (  
         <>
         <Stack height='auto' display={{md:"flex" , xs:"none"}} flexDirection='column' alignItems='center' width='15%' margin='1.2em 1.2em' padding='1.5em 1.5em' borderRadius='9px' sx={{background:`url(${bg1.src})`, backgroundPosition:"center" , backgroundSize:"cover" , backgroundRepeat:"no-repeat" }} boxShadow="8px 8px 22px rgba(21, 22, 24, 0.38), -4px -2px 16px rgba(195, 200, 205, 0.08), inset -2px -2px 4px rgba(54, 54, 57, 0.16), inset 2px 2px 4px rgba(30, 30, 32, 0.18)" >
@@ -19,10 +21,11 @@ const Sidebar = () => {
          <Button onClick={()=> router.push('/')} variant='contained' sx={{borderRadius:"7px" , background:"#407bff !important" ,fontWeight:"700" , marginTop:"0.7em"}}>Know More</Button>
         </Stack>
          {
-              tokencr && (
+             (tokencr || accesstoken) && (
                 <Button onClick={()=>{
                   Cookies.remove("token")
                   router.push('/signin')
+                  signOut()
                 }} className="hover" variant='contained' sx={{ marginTop:"1.5em",width:"100%",background:"none !important" , boxShadow: "2px 2px 5px #babecc,-5px -5px 10px #ffffff73", height:"auto" , fontSize:"18px" , borderRadius:"10px" , textTransform:"none"  , gap:"0.2em",   color:'#000'}}>Log-out<AiOutlineLogout color='#000' size={20}/></Button>
               )
             }
