@@ -16,17 +16,17 @@ import { DeleteOutlineOutlined } from "@mui/icons-material";
 const Cards = () => {
    
       const router = useRouter();
-      const session = () => {
-        if (typeof sessionStorage !== 'undefined') {
-          const token = sessionStorage.getItem("token");
-          return {token:token}
-        } else {
-          // Handle the case where sessionStorage is not available
-          return { token: null };
-        }
-      };
+      // const session = () => {
+      //   if (typeof sessionStorage !== 'undefined') {
+      //     const token = sessionStorage.getItem("token");
+      //     return {token:token}
+      //   } else {
+      //     // Handle the case where sessionStorage is not available
+      //     return { token: null };
+      //   }
+      // };
     
-        const {token} = session()
+        // const {token} = session()
         const { accesstoken } = router.query;
         const tokencr = Cookies.get("token")
         const [openEditDialog, setOpenEditDialog] = useState(false);
@@ -50,7 +50,7 @@ const [editedBudget, setEditedBudget] = useState('');
               Authorization: `Bearer ${accesstoken || tokencr}`,
             },});
           console.log(response.data.data.value);
-       sessionStorage.setItem("budget value" ,response.data.data.value)
+      //  sessionStorage.setItem("budget value" ,response.data.data.value)
        setCreatebudget(response.data.data.value)
        Cookies.set("budgetvalue" ,response.data.data.value)
        Cookies.set('budgetid' , response.data.data._id)
@@ -94,9 +94,9 @@ const overalldata = async ()=>{
     
   console.log(totalexpense);
 
-  sessionStorage.setItem("totalexpense" ,totalexpense.data.data.totalExpense)
+  // sessionStorage.setItem("totalexpense" ,totalexpense.data.data.totalExpense)
   Cookies.set("totalexpense" ,totalexpense.data.data.totalExpense)
-  sessionStorage.setItem("overallbudget" ,totalexpense.data.data.overallBudget)
+  // sessionStorage.setItem("overallbudget" ,totalexpense.data.data.overallBudget)
   Cookies.set("overallbudget" ,totalexpense.data.data.overallBudget)
   } catch(err){
     console.log(err);
@@ -142,9 +142,8 @@ const overalldata = async ()=>{
          // Handle error as needed
       }
    };
-
+   overalldata();
    useEffect(() => {
-    overalldata();
     setGetbudget(Cookies.get("overallbudget"));
     setGetexpense(Cookies.get("totalexpense"));
     setId(Cookies.get('budgetid'))
