@@ -42,8 +42,10 @@ const Dashboard = () => {
             <Stack display={{md:"none" , xs:"block"}}>
             <Fab onClick={()=>{
                   Cookies.remove("token")
+                  //  signOut()
+                  Cookies.remove('next-auth.csrf-token')
                   router.push('/signin')
-                  // signOut()
+                 
                 }}sx={{background:"none !important" , display:"flex" , justifyContent:"center"  , alignItems:"center" }}><AiOutlineLogout color='#000' size={20}/></Fab>
                 </Stack>
           </Stack>

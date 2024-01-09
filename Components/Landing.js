@@ -27,7 +27,8 @@ import { useSession } from 'next-auth/react'
 export default function Landing() {
 
     // const {sessionData} = session()
-    const {data: session} = useSession()
+    const { data: session } = useSession();
+ const token = Cookies.get('next-auth.csrf-token')
     const tokencr = Cookies.get("token")
       const [open, setOpen] = useState(false);
       const[show , setShow] = useState('')
@@ -57,6 +58,7 @@ export default function Landing() {
       };
    const route = useRouter();
    
+   console.log(session);
   return (
     <Box sx={{height:"100%" , minHeight:"100vh" ,backgroundImage:isDarkMode === false ? `url(${bg.src})` : `url(${bgd.src})`, backgroundSize:"cover" , backgroundPosition:"center" , backgroundRepeat:"no-repeat" , position:"relative"}}>
       <Box sx={{ position:"fixed" , top:{md:"5%" , xs:"20%"} , left:{md:"2%" , xs:"75%"} , zIndex:"3" ,backdropFilter:"blur(10px)"}}>
