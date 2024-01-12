@@ -26,12 +26,9 @@ import Cookies from 'js-cookie'
 import { useSession } from 'next-auth/react'
 import { hasCookie } from 'cookies-next'
 export default function Landing() {
-// const [token , setToken] = useState(null)
-    // const {sessionData} = session()
     const router = useRouter()
     const { accesstoken , accessemail} = router.query;
     const { data: session } = useSession();
-    // const token = hasCookie('next-auth.csrf-token');
     const tokencr = Cookies.get("token")
       const [open, setOpen] = useState(false);
       const[show , setShow] = useState('')
