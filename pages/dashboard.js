@@ -19,7 +19,7 @@ const Dashboard = () => {
   const {isDarkMode , setIsDarkMode} = useContext(AppContext)
   const email = Cookies.get('email')
   const { accessemail , accesstoken} = router.query;
-  
+  Cookies.set("accessemail" , accessemail)
   useEffect(() => {
     const { accesstoken , accessemail} = router.query;
     console.log(accesstoken);
@@ -39,7 +39,7 @@ const Dashboard = () => {
         <Stack flexDirection='column' margin={{sm:"1.5em 1em" , xs:"1em 0em"}} width={{sm:"85%" , xs:"auto"}} justifyContent='center' alignItems='center'>
           <Stack width='100%' flexDirection='row' justifyContent='space-between' margin={{sm:"0" , xs:"0 1em"}}>
           <Stack flexDirection='column' alignItems='start' >
-          <Image className="logo" onClick={()=> router.push(`/?accesstoken=${accesstoken}`)} src={logo} alt=".." width={50} height={50} style={{boxShadow: "inset 2px 2px 5px #babecc,inset -5px -5px 10px #ffffff73", width:"4em" , height:"4em" , borderRadius:"50%" , padding:"0.5em 0.5em"  , display:"none"}} />     
+          <Image className="logo" onClick={()=> router.push(`/?accesstoken=${accesstoken}&accessemail=${accessemail}`)} src={logo} alt=".." width={50} height={50} style={{boxShadow: "inset 2px 2px 5px #babecc,inset -5px -5px 10px #ffffff73", width:"4em" , height:"4em" , borderRadius:"50%" , padding:"0.5em 0.5em"  , display:"none"}} />     
           <Typography fontSize='25px' fontWeight='700' color='#252525'>Dashboard</Typography>
               <Typography fontSize={{sm:"15px" , xs:"12px"}}>Logged-in as {accessemail || email}</Typography>
             </Stack>
