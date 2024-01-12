@@ -79,6 +79,9 @@
     width: 2.5em!important; ;
     height: 2.5em!important;
   }
+  .logo{
+    display: block!important;
+  }
   .imgie2{
     width: 2.5em!important; 
     height: 2.5em!important;
