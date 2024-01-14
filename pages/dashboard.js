@@ -45,8 +45,10 @@ const Dashboard = () => {
             </Stack>
             <Stack display={{md:"none" , xs:"block"}}>
             <Fab onClick={async()=>{
+                Cookies.remove("token")
+                Cookies.remove('email')
   await signOut({ callbackUrl: "https://x-penso.vercel.app/signin", });
-                  Cookies.remove("token")
+                
                   // router.push('/signin')
                  
                 }}sx={{background:"none !important" , display:"flex" , justifyContent:"center"  , alignItems:"center" }}><AiOutlineLogout color='#000' size={20}/></Fab>
