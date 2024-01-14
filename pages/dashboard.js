@@ -16,7 +16,7 @@ import logo from '../Components/Images/black.png'
 import Image from "next/image";
 const Dashboard = () => {
   const router = useRouter();
-  const [email  , setEmail] = useState(null)
+  const [email  , setEmail] = useState('')
   const {isDarkMode , setIsDarkMode} = useContext(AppContext)
   setEmail(Cookies.get('email'))
   const { accessemail , accesstoken} = router.query;
