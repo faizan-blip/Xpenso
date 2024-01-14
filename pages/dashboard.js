@@ -41,7 +41,7 @@ const Dashboard = () => {
           <Stack flexDirection='column' alignItems='start' >
           <Image className="logo" onClick={()=> router.push(`/?accesstoken=${accesstoken}&accessemail=${accessemail}`)} src={logo} alt=".." width={50} height={50} style={{boxShadow: "inset 2px 2px 5px #babecc,inset -5px -5px 10px #ffffff73", width:"4em" , height:"4em" , borderRadius:"50%" , padding:"0.5em 0.5em"  , display:"none"}} />     
           <Typography fontSize='25px' fontWeight='700' color='#252525'>Dashboard</Typography>
-              <Typography fontSize={{sm:"15px" , xs:"12px"}}>Logged-in as {email == undefined ? accessemail : email}</Typography>
+              <Typography fontSize={{sm:"15px" , xs:"12px"}}>Logged-in as {email == '' ? accessemail : email}</Typography>
             </Stack>
             <Stack display={{md:"none" , xs:"block"}}>
             <Fab onClick={async()=>{
