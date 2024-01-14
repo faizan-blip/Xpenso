@@ -4,7 +4,7 @@ import Chart from "@/Components/Chart";
 import { Avatar, Stack, Typography, Button, IconButton, Fab } from "@mui/material"; // Added Button import
 import Table from "@/Components/Table";
 import { useRouter } from "next/router";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import bg1 from '../Components/Images/Waves-2s-1536px.png'
 import Cookies from "js-cookie";
 import { AiOutlineLogout } from "react-icons/ai";
@@ -16,8 +16,9 @@ import logo from '../Components/Images/black.png'
 import Image from "next/image";
 const Dashboard = () => {
   const router = useRouter();
+  const [email  , setEmail] = useState(null)
   const {isDarkMode , setIsDarkMode} = useContext(AppContext)
-  let email = Cookies.get('email')
+  setEmail(Cookies.get('email'))
   const { accessemail , accesstoken} = router.query;
   Cookies.set("accessemail" , accessemail)
   useEffect(() => {
