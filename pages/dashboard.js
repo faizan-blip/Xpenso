@@ -4,7 +4,7 @@ import Chart from "@/Components/Chart";
 import { Avatar, Stack, Typography, Button, IconButton, Fab } from "@mui/material"; // Added Button import
 import Table from "@/Components/Table";
 import { useRouter } from "next/router";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import bg1 from '../Components/Images/Waves-2s-1536px.png'
 import Cookies from "js-cookie";
 import { AiOutlineLogout } from "react-icons/ai";
@@ -16,9 +16,9 @@ import logo from '../Components/Images/black.png'
 import Image from "next/image";
 const Dashboard = () => {
   const router = useRouter();
-  const [email  , setEmail] = useState('')
   const {isDarkMode , setIsDarkMode} = useContext(AppContext)
-  setEmail(Cookies.get('email'))
+  let email = Cookies.get('email')
+  console.log(email);
   const { accessemail , accesstoken} = router.query;
   Cookies.set("accessemail" , accessemail)
   useEffect(() => {
@@ -42,7 +42,7 @@ const Dashboard = () => {
           <Stack flexDirection='column' alignItems='start' >
           <Image className="logo" onClick={()=> router.push(`/?accesstoken=${accesstoken}&accessemail=${accessemail}`)} src={logo} alt=".." width={50} height={50} style={{boxShadow: "inset 2px 2px 5px #babecc,inset -5px -5px 10px #ffffff73", width:"4em" , height:"4em" , borderRadius:"50%" , padding:"0.5em 0.5em"  , display:"none"}} />     
           <Typography fontSize='25px' fontWeight='700' color='#252525'>Dashboard</Typography>
-              <Typography fontSize={{sm:"15px" , xs:"12px"}}>Logged-in as {email ? accessemail : email}</Typography>
+              <Typography fontSize={{sm:"15px" , xs:"12px"}}>Logged-in as {email == undefined ? accessemail : email}</Typography>
             </Stack>
             <Stack display={{md:"none" , xs:"block"}}>
             <Fab onClick={async()=>{
@@ -50,7 +50,7 @@ const Dashboard = () => {
                 Cookies.remove('email')
   await signOut({ callbackUrl: "https://x-penso.vercel.app/signin", });
                 
-
+                  // router.push('/signin')
                  
                 }}sx={{background:"none !important" , display:"flex" , justifyContent:"center"  , alignItems:"center" }}><AiOutlineLogout color='#000' size={20}/></Fab>
                 </Stack>
