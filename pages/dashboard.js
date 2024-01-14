@@ -50,7 +50,7 @@ const Dashboard = () => {
                 Cookies.remove('email')
   await signOut({ callbackUrl: "https://x-penso.vercel.app/signin", });
                 
-                  // router.push('/signin')
+
                  
                 }}sx={{background:"none !important" , display:"flex" , justifyContent:"center"  , alignItems:"center" }}><AiOutlineLogout color='#000' size={20}/></Fab>
                 </Stack>
